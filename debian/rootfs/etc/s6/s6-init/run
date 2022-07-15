@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+[ -n "${EASYSOFT_DEBUG:+1}" ] && set -x
+
+# Load libraries
+. /opt/easysoft/scripts/liblog.sh
+. /opt/easysoft/scripts/libmysql.sh
+. /opt/easysoft/scripts/libfs.sh
+. /opt/easysoft/scripts/libspug.sh
+
+# Load Global environment variables
+. /etc/s6/s6-init/envs
+
+#==================================#
+# Prepare persistence directories. #
+#==================================#
+info "Prepare persistence directories."
+for pdir in $PHP_PERSISTENCE_LIST
+do
+    # Ensure a directory exists and,is owned by the given user
+    ensure_dir_exists "$pdir"
+done
+
+#=====================#
+#   Prepare Spug      #
+#=====================#
+SPUG_INI="/apps/spug/api/spug/overrides.py"
+
+info "Render overrides.py with environment variables."
+/usr/bin/render-template ${SPUG_INI}.tpl > ${SPUG_INI}
+
+#======================#
+# Check MySQL service  #
+#======================#
+# Check and waiting mysql to be ready
+wait_for_mysql || exit 1
+
+# Initialize database
+if [ ! -f /data/.inited ];then
+    mysql_init_db "$MYSQL_DB" \
+    && /usr/bin/init_spug "$DEFAULT_ADMIN_USER" "$DEFAULT_ADMIN_PASSWORD" \
+    && # Disable verify_ip \
+    exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('verify_ip','false')" \
+    && touch /data/.inited
+fi

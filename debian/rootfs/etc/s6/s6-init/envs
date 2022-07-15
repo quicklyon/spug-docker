@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#===========#
+#   MySQL   #
+#===========#
+export MYSQL_HOST=${MYSQL_HOST:-127.0.0.1}
+export MYSQL_PORT=${MYSQL_PORT:-3306}
+export MYSQL_DB=${MYSQL_DB:-spug}
+export MYSQL_USER=${MYSQL_USER:-root}
+export MYSQL_PASSWORD=${MYSQL_PASSWORD:-pass4Spug}
+
+# ======================#
+# Persistence directory #
+#=======================#
+export PHP_PERSISTENCE_LIST="
+/data
+/data/repos
+"
+
+export DEFAULT_ADMIN_USER=${DEFAULT_ADMIN_USER:-"admin"}
+export DEFAULT_ADMIN_PASSWORD=${DEFAULT_ADMIN_PASSWORD:-"spug.dev"}
+
+export REDIS_HOST=${REDIS_HOST:-127.0.0.1}
+export REDIS_PORT=${REDIS_PORT:-6379}
