@@ -47,5 +47,11 @@ if [ ! -f /data/.inited ];then
     && /usr/bin/init_spug "$DEFAULT_ADMIN_USER" "$DEFAULT_ADMIN_PASSWORD" \
     && # Disable verify_ip \
     exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('verify_ip','false')" \
-    && touch /data/.inited
+    && get_code_version > /data/.inited
+fi
+
+# Check for updates
+if is_updated ;then
+  info "New version detected, update database."
+  python3 /apps/spug/api/manage.py updatedb && get_code_version > /data/.inited
 fi
