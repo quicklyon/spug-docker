@@ -21,7 +21,7 @@
 
 ## 二、支持的标签(Tag)
 
-- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1) [`3.2.2`]((https://github.com/openspug/spug/releases/tag/v3.2.2)
+- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1) [`3.2.2`](https://github.com/openspug/spug/releases/tag/v3.2.2)
 
 ## 三、获取镜像
 
