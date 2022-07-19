@@ -21,7 +21,7 @@
 
 ## 二、支持的标签(Tag)
 
-- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1)
+- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1) [`3.2.2`]((https://github.com/openspug/spug/releases/tag/v3.2.2)
 
 ## 三、获取镜像
 
@@ -41,7 +41,7 @@ docker pull hub.qucheng.com/app/spug:[TAG]
 ```bash
 $ docker run -it \
     -v $PWD/data:/data \
-    hub.qucheng.com/app/spug:3.2.1
+    hub.qucheng.com/app/spug:3.2.2
 ```
 
 ## 五、环境变量
