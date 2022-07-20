@@ -21,6 +21,8 @@ services:
       - 'db:/var/lib/mysql'
     environment:
       - MYSQL_ROOT_PASSWORD=pass4Spug
+      - MYSQL_PASSWORD=pass4Spug
+      - MYSQL_USER=spug
       - MYSQL_DATABASE=spug
     command: 
       - /opt/bitnami/scripts/mysql/run.sh
@@ -44,7 +46,7 @@ services:
       - EASYSOFT_DEBUG=true
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
-      - MYSQL_USER=root
+      - MYSQL_USER=spug
       - MYSQL_PASSWORD=pass4Spug
       - MYSQL_DB=spug
       - REDIS_HOST=redis
