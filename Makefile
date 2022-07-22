@@ -8,6 +8,10 @@ build: ## 构建镜像
 
 push: ## push 镜像
 	docker push hub.qucheng.com/app/spug:$(TAG)
+	docker tag hub.qucheng.com/app/spug:$(TAG) easysoft/spug:$(TAG)
+	docker push easysoft/spug:$(TAG)
+	docker tag easysoft/spug:$(TAG) easysoft/spug:latest
+	docker push easysoft/spug:latest
 
 run: ## 运行
 	docker-compose -f docker-compose.yml up -d

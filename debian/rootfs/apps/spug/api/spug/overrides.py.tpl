@@ -35,3 +35,4 @@ CHANNEL_LAYERS = {
 }
 
 REPOS_DIR = '/data/repos'
+BUILD_DIR = '/data/repos/build'
