@@ -1,4 +1,4 @@
-# Spug 容器镜像
+# QuickOn Spug 应用镜像
 
 ## 快速参考
 
