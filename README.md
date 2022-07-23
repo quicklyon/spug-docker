@@ -1,5 +1,12 @@
 # Spug 容器镜像
 
+## 快速参考
+
+- 通过 [渠成软件百宝箱](https://www.qucheng.com/app-install/install-spug-125.html) 一键安装 **Spug**
+- [Dockerfile 源码](https://github.com/quicklyon/spug-docker)
+- [Spug 源码](https://github.com/openspug/spug)
+- [Spug 官网](https://spug.cc/)
+
 ## 一、关于Spug
 
 [Spug](https://spug.cc/) 面向中小型企业设计的轻量级无 Agent 的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
@@ -19,16 +26,17 @@
 
 官网：[spug.cc](https://spug.cc/)
 
-## 二、支持的标签(Tag)
+## 二、支持的版本(Tag)
 
-- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1) [`3.2.2`](https://github.com/openspug/spug/releases/tag/v3.2.2)
+- [latest](https://github.com/openspug/spug/releases/tag/v3.2.2) [`3.2.2`](https://github.com/openspug/spug/releases/tag/v3.2.2)
+- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1)
 
 ## 三、获取镜像
 
-推荐从 渠成镜像仓库 拉取我们构建好的Spug 应用镜像
+推荐从 渠成镜像仓库 拉取我们构建好的 Spug 应用镜像，可用的[版本列表](https://hub.docker.com/r/easysoft/spug/tags)
 
 ```bash
-docker pull hub.qucheng.com/app/spug:[TAG]
+docker pull easysoft/spug:[TAG]
 ```
 
 ## 四、持久化数据
@@ -41,7 +49,7 @@ docker pull hub.qucheng.com/app/spug:[TAG]
 ```bash
 $ docker run -it \
     -v $PWD/data:/data \
-    hub.qucheng.com/app/spug:3.2.2
+    easysoft/spug:3.2.2
 ```
 
 ## 五、环境变量
@@ -63,7 +71,7 @@ $ docker run -it \
 
 ### 6.1 通过make命令运行
 
-[Makefile](./Makefile)中详细的定义了可以使用的参数。
+[Makefile](https://github.com/quicklyon/spug-docker/blob/main/Makefile)中详细的定义了可以使用的参数。
 
 ```bash
 # 运行spug，包括mysql与redis
@@ -83,38 +91,5 @@ make build
 
 说明
 
-- [VERSION](./VERSION) 文件中详细的定义了Makefile可以操作的版本
-- [docker-compose.yml](./docker-compose.yml)
-
-### 6.3 在 Kubernetes 中运行
-
-我们通过 Helm 封装了Spug应用，供[渠成平台](https://www.qucheng.com)使用，包括Spug程序、MySQL服务和Redis服务，您可以直接通过Helm命令添加渠成的Helm仓库。
-
-#### 6.3.1 前提条件
-
-1. Kubernetes 1.19+ 最佳
-2. Helm 3.2.0+
-3. K8S集群需要提前配置默认的共享存储（分布式存储），通过`kubectl get sc` 查看
-
-#### 6.3.2 安装命令
-
-```bash
-# 配置Helm仓库
-helm repo add qucheng-market https://hub.qucheng.com/chartrepo/stable
-helm repo update
-
-# 为Spug服务创建独立namespace
-kubectl create ns spug
-
-# 启动Spug
-helm upgrade -i spug qucheng-market/spug -n spug --set ingress.hostname=spug.local --set image.pullPolicy=Always
-
-# 卸载服务
-helm delete spug -n spug # 删除服务
-kubectl delete pvc --all -n spug # 清理持久化存储
-```
-
-> **说明：**
->
-> 1. ingress.hostname=< 设置内部可用域名 > 需要设置域名
-> 2. 通过helm安装的Spug是当前最新版本，详情可通过 `helm search repo spug` 查看
+- [VERSION](https://github.com/quicklyon/spug-docker/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本
+- [docker-compose.yml](https://github.com/quicklyon/spug-docker/blob/main/docker-compose.yml)

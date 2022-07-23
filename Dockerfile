@@ -1,4 +1,4 @@
-FROM hub.qucheng.com/library/debian:11.3-slim
+FROM debian:11.4-slim
 
 LABEL maintainer "zhouyueqiu <zhouyueqiu@easycorp.ltd>"
 
@@ -11,13 +11,9 @@ COPY debian/prebuildfs /
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
 
-RUN sed -i -r 's/(deb|security).debian.org/mirrors.cloud.tencent.com/g' /etc/apt/sources.list \
-    && install_packages curl wget tzdata zip unzip s6 pwgen cron nginx ca-certificates \
-                        libmariadb-dev-compat gcc python3-dev python3-pip python3-venv \
-                        libsasl2-dev libldap2-dev python3 sshpass rsync sshfs git \
-    && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone \
-    && dpkg-reconfigure --frontend noninteractive tzdata
+RUN install_packages curl wget zip unzip s6 pwgen cron nginx ca-certificates \
+                     libmariadb-dev-compat gcc python3-dev python3-pip python3-venv \
+                     libsasl2-dev libldap2-dev python3 sshpass rsync sshfs git
 
 ARG VERSION
 ENV APP_VER=${VERSION}
