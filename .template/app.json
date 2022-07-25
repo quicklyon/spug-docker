@@ -1,0 +1,12 @@
+{
+    "Name": "Spug",
+    "Home": "https://spug.cc/",
+    "GitUrl": "https://github.com/openspug/spug",
+    "DockerfileUrl": "https://github.com/quicklyon/spug-docker",
+    "InstallDocUrl": "https://www.qucheng.com/app-install/install-spug-125.html",
+    "Docker": {
+        "Name": "spug",
+        "Repo": "https://hub.docker.com/r/easysoft/spug",
+        "TagUrl": "https://hub.docker.com/r/easysoft/spug/tags/"
+    }
+}

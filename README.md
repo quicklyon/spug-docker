@@ -1,3 +1,4 @@
+<!-- 该文档是模板生成，手动修改的内容会被覆盖，详情参见：https://github.com/quicklyon/doc-toolkit -->
 # QuickOn Spug 应用镜像
 
 ## 快速参考
@@ -7,9 +8,12 @@
 - [Spug 源码](https://github.com/openspug/spug)
 - [Spug 官网](https://spug.cc/)
 
-## 一、关于Spug
+## 一、关于 Spug
 
 [Spug](https://spug.cc/) 面向中小型企业设计的轻量级无 Agent 的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
+
+Spug官网：[https://spug.cc/](https://spug.cc/)
+
 
 ### 1.1 特性
 
@@ -24,16 +28,24 @@
 - 优雅美观: 基于 Ant Design 的 UI 界面
 - 开源免费: 前后端代码完全开源
 
-官网：[spug.cc](https://spug.cc/)
-
 ## 二、支持的版本(Tag)
 
-- [latest](https://github.com/openspug/spug/releases/tag/v3.2.2) [`3.2.2`](https://github.com/openspug/spug/releases/tag/v3.2.2)
-- [`3.2.1`](https://github.com/openspug/spug/releases/tag/v3.2.1)
+由于版本比较多,这里只列出最新的5个版本,更详细的版本列表请参考:[可用版本列表](https://hub.docker.com/r/easysoft/spug/tags/)
+
+- [latest](https://github.com/openspug/spug/releases)
+- [3.2.3](https://github.com/openspug/spug/releases/tag/v3.2.3)
+- [3.2.2](https://github.com/openspug/spug/releases/tag/v3.2.2)
+- [3.2.1](https://github.com/openspug/spug/releases/tag/v3.2.1)
 
 ## 三、获取镜像
 
-推荐从 渠成镜像仓库 拉取我们构建好的 Spug 应用镜像，可用的[版本列表](https://hub.docker.com/r/easysoft/spug/tags)
+推荐从 [Docker Hub Registry](https://hub.docker.com/r/easysoft/spug) 拉取我们构建好的官方Docker镜像。
+
+```bash
+docker pull easysoft/spug:latest
+```
+
+如需使用指定的版本，可以拉取一个包含版本标签的镜像，在Docker Hub仓库中查看 [可用版本列表](https://hub.docker.com/r/easysoft/spug/tags/)
 
 ```bash
 docker pull easysoft/spug:[TAG]
@@ -41,15 +53,29 @@ docker pull easysoft/spug:[TAG]
 
 ## 四、持久化数据
 
-如果删除容器，所有的数据都将被删除，下次运行镜像时会重新初始化数据。为了避免数据丢失，应该为容器提供一个挂载卷，这样可以将数据进行持久化存储。
+如果你删除容器，所有的数据都将被删除，下次运行镜像时会重新初始化数据。为了避免数据丢失，你应该为容器提供一个挂在卷，这样可以将数据进行持久化存储。
 
-- /data
+为了数据持久化，你应该挂载持久化目录：
+
+- /data 持久化数据
+
 如果挂载的目录为空，首次启动会自动初始化相关文件
 
 ```bash
 $ docker run -it \
     -v $PWD/data:/data \
-    easysoft/spug:3.2.2
+docker pull easysoft/spug:latest
+```
+
+或者修改 docker-compose.yml 文件，添加持久化目录配置
+
+```bash
+services:
+  Spug:
+  ...
+    volumes:
+      - /path/to/gogs-persistence:/data
+  ...
 ```
 
 ## 五、环境变量
@@ -69,27 +95,23 @@ $ docker run -it \
 
 ## 六、运行
 
-### 6.1 通过make命令运行
-
-[Makefile](https://github.com/quicklyon/spug-docker/blob/main/Makefile)中详细的定义了可以使用的参数。
+### 6.1 单机Docker-compose方式运行
 
 ```bash
-# 运行spug，包括mysql与redis
+# 启动服务
 make run
 
-# 关闭spug
-make stop
+# 查看服务状态
+make ps
 
-# 清理容器与持久化数据
-make clean
-
-# 构建镜像
-# 构建spug镜像
-make build
+# 查看服务日志
+docker-compose logs -f gogs
 
 ```
 
-说明
+**说明:**
 
-- [VERSION](https://github.com/quicklyon/spug-docker/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本
-- [docker-compose.yml](https://github.com/quicklyon/spug-docker/blob/main/docker-compose.yml)
+- 启动成功后，打开浏览器输入 `http://<你的IP>:8080` 访问管理后台
+- 默认用户名：`admin`，默认密码：`spug.dev`
+- [VERSION]({{APP_GIT_URL}}/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本
+- [docker-compose.yml]({{APP_GIT_URL}}/blob/main/docker-compose.yml)

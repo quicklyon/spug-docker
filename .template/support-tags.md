@@ -1,0 +1,4 @@
+- [latest](https://github.com/openspug/spug/releases)
+- [3.2.3](https://github.com/openspug/spug/releases/tag/v3.2.3)
+- [3.2.2](https://github.com/openspug/spug/releases/tag/v3.2.2)
+- [3.2.1](https://github.com/openspug/spug/releases/tag/v3.2.1)

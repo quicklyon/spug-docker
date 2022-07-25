@@ -9,7 +9,7 @@ CURRENT_VER=$( cat VERSION)
 
 if [ "$LATEST_VER" != "$CURRENT_VER" ];then
   echo $LATEST_VER > VERSION
-  echo "Spug new version was detected. Please rebuild the image."
+  echo "Spug new version->$LATEST_VER was detected. Please rebuild the image."
 else
   echo "$CURRENT_VER is the latest version."
 fi
