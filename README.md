@@ -1,5 +1,12 @@
-<!-- 该文档是模板生成，手动修改的内容会被覆盖，详情参见：https://github.com/quicklyon/doc-toolkit -->
+<!-- 该文档是模板生成，手动修改的内容会被覆盖，详情参见：https://github.com/quicklyon/template-toolkit -->
 # QuickOn Spug 应用镜像
+
+![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/quicklyon/spug-docker/build?style=flat-square)
+![Docker Pulls](https://img.shields.io/docker/pulls/easysoft/spug?style=flat-square)
+![Docker Image Size](https://img.shields.io/docker/image-size/easysoft/spug?style=flat-square)
+![GitHub tag](https://img.shields.io/github/v/tag/quicklyon/spug-docker?style=flat-square)
+
+> 申明: 该软件镜像是由QuickOn打包。在发行中提及的各自商标由各自的公司或个人所有，使用它们并不意味着任何从属关系。
 
 ## 快速参考
 
@@ -11,6 +18,8 @@
 ## 一、关于 Spug
 
 [Spug](https://spug.cc/) 面向中小型企业设计的轻量级无 Agent 的自动化运维平台，整合了主机管理、主机批量执行、主机在线终端、文件在线上传下载、应用发布部署、在线任务计划、配置中心、监控、报警等一系列功能。
+
+![screenshots](https://raw.githubusercontent.com/quicklyon/spug-docker/main/.template/screenshot.png)
 
 Spug官网：[https://spug.cc/](https://spug.cc/)
 
@@ -33,6 +42,7 @@ Spug官网：[https://spug.cc/](https://spug.cc/)
 由于版本比较多,这里只列出最新的5个版本,更详细的版本列表请参考:[可用版本列表](https://hub.docker.com/r/easysoft/spug/tags/)
 
 - [latest](https://github.com/openspug/spug/releases)
+- [3.2.4-20220801](https://github.com/openspug/spug/releases/tag/v3.2.4)
 - [3.2.3](https://github.com/openspug/spug/releases/tag/v3.2.3)
 - [3.2.2](https://github.com/openspug/spug/releases/tag/v3.2.2)
 - [3.2.1](https://github.com/openspug/spug/releases/tag/v3.2.1)
@@ -113,5 +123,5 @@ docker-compose logs -f gogs
 
 - 启动成功后，打开浏览器输入 `http://<你的IP>:8080` 访问管理后台
 - 默认用户名：`admin`，默认密码：`spug.dev`
-- [VERSION]({{APP_GIT_URL}}/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本
-- [docker-compose.yml]({{APP_GIT_URL}}/blob/main/docker-compose.yml)
+- [VERSION](https://github.com/quicklyon/spug-docker/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本。
+- [docker-compose.yml](https://github.com/quicklyon/spug-docker/blob/main/docker-compose.yml)。
