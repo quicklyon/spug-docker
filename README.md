@@ -1,7 +1,7 @@
 <!-- 该文档是模板生成，手动修改的内容会被覆盖，详情参见：https://github.com/quicklyon/template-toolkit -->
 # QuickOn Spug 应用镜像
 
-![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/quicklyon/spug-docker/build?style=flat-square)
+![GitHub Workflow Status (event)](https://img.shields.io/github/actions/workflow/status/quicklyon/spug-docker/docker.yml?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/easysoft/spug?style=flat-square)
 ![Docker Image Size](https://img.shields.io/docker/image-size/easysoft/spug?style=flat-square)
 ![GitHub tag](https://img.shields.io/github/v/tag/quicklyon/spug-docker?style=flat-square)

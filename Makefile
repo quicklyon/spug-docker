@@ -1,3 +1,4 @@
+export APP_NAME=spug
 export TAG := $(shell cat VERSION)
 export BUILD_DATE := $(shell date +'%Y%m%d')
 
@@ -11,11 +12,12 @@ build: ## 构建镜像
 push: ## push 镜像
 	docker push hub.qucheng.com/app/spug:$(TAG)-$(BUILD_DATE)
 
-docker-push: ## push 镜像到 hub.docker.com
-	docker tag hub.qucheng.com/app/spug:$(TAG)-$(BUILD_DATE) easysoft/spug:$(TAG)-$(BUILD_DATE)
-	docker push easysoft/spug:$(TAG)-$(BUILD_DATE)
-	docker tag easysoft/spug:$(TAG)-$(BUILD_DATE) easysoft/spug:latest
-	docker push easysoft/spug:latest
+push-public: ## push --> hub.docker.com
+	docker tag hub.qucheng.com/app/$(APP_NAME):$(TAG)-$(BUILD_DATE) easysoft/$(APP_NAME):$(TAG)-$(BUILD_DATE)
+	docker tag easysoft/$(APP_NAME):$(TAG)-$(BUILD_DATE) easysoft/$(APP_NAME):latest
+	docker push easysoft/$(APP_NAME):$(TAG)-$(BUILD_DATE)
+	docker push easysoft/$(APP_NAME):latest
+	curl http://i.haogs.cn:3839/sync?image=easysoft/$(APP_NAME):$(TAG)-$(BUILD_DATE)
 
 run: ## 运行
 	export TAG=$(TAG)-$(BUILD_DATE); docker-compose -f docker-compose.yml up -d
