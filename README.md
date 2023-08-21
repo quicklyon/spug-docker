@@ -1,6 +1,7 @@
 <!-- 该文档是模板生成，手动修改的内容会被覆盖，详情参见：https://github.com/quicklyon/template-toolkit -->
 # QuickOn Spug 应用镜像
 
+
 ![GitHub Workflow Status (event)](https://img.shields.io/github/actions/workflow/status/quicklyon/spug-docker/docker.yml?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/easysoft/spug?style=flat-square)
 ![Docker Image Size](https://img.shields.io/docker/image-size/easysoft/spug?style=flat-square)
@@ -41,11 +42,7 @@ Spug官网：[https://spug.cc/](https://spug.cc/)
 
 由于版本比较多,这里只列出最新的5个版本,更详细的版本列表请参考:[可用版本列表](https://hub.docker.com/r/easysoft/spug/tags/)
 
-- [latest](https://github.com/openspug/spug/releases)
-- [3.2.4-20220801](https://github.com/openspug/spug/releases/tag/v3.2.4)
-- [3.2.3](https://github.com/openspug/spug/releases/tag/v3.2.3)
-- [3.2.2](https://github.com/openspug/spug/releases/tag/v3.2.2)
-- [3.2.1](https://github.com/openspug/spug/releases/tag/v3.2.1)
+
 
 ## 三、获取镜像
 

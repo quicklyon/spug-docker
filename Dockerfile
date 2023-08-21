@@ -1,4 +1,4 @@
-FROM debian:11.5-slim
+FROM debian:11.7-slim
 
 LABEL maintainer "zhouyueqiu <zhouyueqiu@easycorp.ltd>"
 
@@ -13,7 +13,7 @@ ENV TZ=Asia/Shanghai \
 
 RUN install_packages curl wget zip unzip s6 pwgen cron nginx ca-certificates \
                      libmariadb-dev-compat gcc python3-dev python3-pip python3-venv \
-                     libsasl2-dev libldap2-dev python3 sshpass rsync sshfs git
+                     libsasl2-dev libldap2-dev python3 sshpass rsync sshfs git pkg-config
 
 ARG VERSION
 ENV APP_VER=${VERSION}
@@ -29,8 +29,8 @@ RUN mkdir tmp \
     && cd api \
     # Add gunicorn and mysqlclient to requirements.txt
     && sed -i "1i gunicorn\nmysqlclient\n" requirements.txt \
-    && pip3 install --upgrade --no-cache-dir pip -i https://pypi.doubanio.com/simple/ \
-    && pip3 install --no-cache-dir -i https://pypi.doubanio.com/simple/  -r requirements.txt
+    && pip3 install --upgrade --no-cache-dir pip -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com \
+    && pip3 install --no-cache-dir -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r requirements.txt
 
 # Install render-template
 RUN . /opt/easysoft/scripts/libcomponent.sh && component_unpack "render-template" "1.0.1-10" --checksum 5e410e55497aa79a6a0c5408b69ad4247d31098bdb0853449f96197180ed65a4
