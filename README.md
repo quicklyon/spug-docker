@@ -112,7 +112,7 @@ make run
 make ps
 
 # 查看服务日志
-docker-compose logs -f gogs
+docker-compose logs -f spug
 
 ```
 
@@ -122,3 +122,31 @@ docker-compose logs -f gogs
 - 默认用户名：`admin`，默认密码：`spug.dev`
 - [VERSION](https://github.com/quicklyon/spug-docker/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本。
 - [docker-compose.yml](https://github.com/quicklyon/spug-docker/blob/main/docker-compose.yml)。
+
+## 七、版本升级
+
+<!-- 这里是应用的【应用升级】信息，通过命令维护，详情参考：https://github.com/quicklyon/doc-toolkit -->
+容器镜像已为版本升级做了特殊处理，当检测数据（数据库/持久化文件）版本与镜像内运行的程序版本不一致时，会进行数据库结构的检查，并自动进行数据库升级操作。
+
+因此，升级版本只需要更换镜像版本号即可：
+
+> 修改 docker-compose.yml 文件
+
+```diff
+...
+  gitea:
+-    image: hub.zentao.net/app/spug:3.3.2-20240115
++    image: hub.zentao.net/app/spug:3.2.7-20230821
+    container_name: spug
+...
+```
+
+更新服务
+
+```bash
+# 是用新版本镜像更新服务
+docker-compose up -d
+
+# 查看服务状态和镜像版本
+docker-compose ps
+```

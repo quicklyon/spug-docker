@@ -70,7 +70,7 @@ services:
   {{APP_NAME}}:
   ...
     volumes:
-      - /path/to/gogs-persistence:/data
+      - /path/to/spug-persistence:/data
   ...
 ```
 
@@ -90,10 +90,14 @@ make run
 make ps
 
 # 查看服务日志
-docker-compose logs -f gogs
+docker-compose logs -f spug
 
 ```
 
 {{MAKE_EXTRA_INFO}}
 - [VERSION]({{APP_DOCKERFILE_GIT_URL}}/blob/main/VERSION) 文件中详细的定义了Makefile可以操作的版本。
 - [docker-compose.yml]({{APP_DOCKERFILE_GIT_URL}}/blob/main/docker-compose.yml)。
+
+## 七、版本升级
+
+{{APP_UPDATE}}
