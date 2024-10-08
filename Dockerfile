@@ -1,6 +1,6 @@
 FROM debian:11.8-slim
 
-LABEL maintainer "zhouyueqiu <zhouyueqiu@easycorp.ltd>"
+LABEL maintainer="zhouyueqiu <zhouyueqiu@easycorp.ltd>"
 
 ENV OS_ARCH="amd64" \
     OS_NAME="debian-11" \
