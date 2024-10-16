@@ -9,34 +9,41 @@
 . /opt/easysoft/scripts/libos.sh
 
 ########################
-# Check and waiting MySQL to be ready. 
+# Check and waiting service to be ready. 
 # Globals:
 #   MAXWAIT
-#   MYSQL_HOST
-#   MYSQL_PORT
 # Arguments:
-#   $1 - mysql service host
-#   $2 - mysql service port
+#   $1 - Service name
+#   $2 - Service host
+#   $3 - Service port
+#   S4 - Prefix information
 # Returns:
-#   0 if the mysql server is can be connected, 1 otherwise
+#   0 if the service is can be connected, 1 otherwise
 #########################
-wait_for_mysql() {
-    local retries=${MAXWAIT:-30}
-    local mysql_host="${1:-$MYSQL_HOST}"
-    local mysql_port="${2:-$MYSQL_PORT}"
-    info "Check whether the MySQL is available."
+wait_for_service() {
+    local retries=${MAXWAIT:-5}
+    local service_name="${1^}"
+    local svc_host="${2:-localhost}"
+    local svc_port="${3:-80}"
+    local prefix_info=${4^}
 
-    for ((i = 1; i <= retries; i += 1)); do
-        if wait-for-port --host="${mysql_host}" --state=inuse --timeout=1 "${mysql_port}" > /dev/null 2>&1;
+    info "Check whether the $service_name is available."
+
+    for ((i = 0; i <= retries; i += 1)); do
+        # 重试5次，每次间隔2的i次方秒
+        secs=$((2 ** i))
+        sleep $secs
+        if nc -z "${svc_host}" "${svc_port}" > /dev/null 2>&1;
         then
-            info "MySQL is ready."
+            info "$prefix_info: $service_name is ready."
             break
         fi
 
-        warn "Waiting MySQL $i seconds"
+        warn "$prefix_info: Waiting $service_name $secs seconds"
 
         if [ "$i" == "$retries" ]; then
-            error "Unable to connect to MySQL: $mysql_host:$mysql_port"
+            error "$prefix_info Maximum number of retries reached!"
+            error "$prefix_info Unable to connect to $service_name: $svc_host:$svc_port"
             return 1
         fi
     done

@@ -42,7 +42,13 @@ Spug官网：[https://spug.cc/](https://spug.cc/)
 
 由于版本比较多,这里只列出最新的5个版本,更详细的版本列表请参考:[可用版本列表](https://hub.docker.com/r/easysoft/spug/tags/)
 
-
+- [latest](https://github.com/openspug/spug/releases)
+- [3.3.3-20241015](https://github.com/openspug/spug/releases/tag/v3.3.3)
+- [3.3.2-20241008](https://github.com/openspug/spug/releases/tag/v3.3.2)
+- [3.2.7-20230821](https://github.com/openspug/spug/releases/tag/v3.2.7)
+- [3.2.4-20220801](https://github.com/openspug/spug/releases/tag/v3.2.4)
+- [3.2.3](https://github.com/openspug/spug/releases/tag/v3.2.3)
+- [3.2.2](https://github.com/openspug/spug/releases/tag/v3.2.2)
 
 ## 三、获取镜像
 
@@ -81,7 +87,7 @@ services:
   Spug:
   ...
     volumes:
-      - /path/to/gogs-persistence:/data
+      - /path/to/spug-persistence:/data
   ...
 ```
 
@@ -135,7 +141,7 @@ docker-compose logs -f spug
 ```diff
 ...
   gitea:
--    image: hub.zentao.net/app/spug:3.3.2-20240115
+-    image: hub.zentao.net/app/spug:3.3.3-20241015
 +    image: hub.zentao.net/app/spug:3.2.7-20230821
     container_name: spug
 ...

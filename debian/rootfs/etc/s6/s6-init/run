@@ -39,7 +39,7 @@ info "Render overrides.py with environment variables."
 # Check MySQL service  #
 #======================#
 # Check and waiting mysql to be ready
-wait_for_mysql || exit 1
+wait_for_service "MYSQL" "$MYSQL_HOST" "$MYSQL_PORT" "Spug" || exit 1
 
 # Initialize database
 if [ ! -f /data/.inited ];then

@@ -8,7 +8,7 @@
 ```diff
 ...
   gitea:
--    image: hub.zentao.net/app/spug:3.3.2-20240115
+-    image: hub.zentao.net/app/spug:3.3.3-20241015
 +    image: hub.zentao.net/app/spug:3.2.7-20230821
     container_name: spug
 ...
