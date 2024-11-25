@@ -38,6 +38,10 @@ RUN if [[ $(arch) == "x86_64" ]];then export OS_ARCH="amd64"; else export OS_ARC
     && component_unpack "render-template" "1.0.5" \
     && component_unpack "mysql-client" "10.5.26"
 
+# Patch spug api deploy max length of version field
+RUN sed -r -i 's/(version = models\.CharField\(max_length)=100(, null=True\))/\1=500\2/' api/apps/deploy/models.py \
+    && grep -E 'version = models\.CharField\(max_length=500' api/apps/deploy/models.py
+
 # Copy nginx and spug config files
 COPY debian/rootfs /
 

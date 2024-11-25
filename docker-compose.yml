@@ -29,6 +29,7 @@ services:
 
   spug:
     image: hub.zentao.net/app/spug:${TAG}
+    pull_policy: always
     container_name: spug
     ports:
       - '8080:80'

@@ -47,6 +47,8 @@ if [ ! -f /data/.inited ];then
     && /usr/bin/init_spug "$DEFAULT_ADMIN_USER" "$DEFAULT_ADMIN_PASSWORD" \
     && # Disable verify_ip \
     exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('verify_ip','false')" \
+    && # Disable bind ip
+    exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('bind_ip','false')" \
     && get_code_version > /data/.inited
 fi
 

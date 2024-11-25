@@ -34,8 +34,7 @@ ps: ## 运行状态
 	export TAG=$(TAG)-$(BUILD_DATE); docker-compose -f docker-compose.yml ps
 
 stop: ## 停服务
-	export TAG=$(TAG)-$(BUILD_DATE); docker-compose -f docker-compose.yml stop
-	export TAG=$(TAG)-$(BUILD_DATE); docker-compose -f docker-compose.yml rm -f
+	export TAG=$(TAG)-$(BUILD_DATE); docker compose -f docker-compose.yml down -v
 
 restart: build clean ps ## 重构
 
