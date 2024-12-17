@@ -46,9 +46,9 @@ if [ ! -f /data/.inited ];then
     mysql_init_db "$MYSQL_DB" \
     && /usr/bin/init_spug "$DEFAULT_ADMIN_USER" "$DEFAULT_ADMIN_PASSWORD" \
     && # Disable verify_ip \
-    exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('verify_ip','false')" \
+    exec_sql "INSERT INTO $MYSQL_DB.settings (\`key\`,\`value\`) VALUES ('verify_ip','false')" \
     && # Disable bind ip
-    exec_sql "INSERT INTO spug.settings (\`key\`,\`value\`) VALUES ('bind_ip','false')" \
+    exec_sql "INSERT INTO $MYSQL_DB.settings (\`key\`,\`value\`) VALUES ('bind_ip','false')" \
     && get_code_version > /data/.inited
 fi
 
