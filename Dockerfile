@@ -28,8 +28,8 @@ RUN mkdir tmp \
     && cd api \
     # Add gunicorn and mysqlclient to requirements.txt
     && sed -i "1i gunicorn\nmysqlclient\n" requirements.txt \
-    && pip3 install --upgrade --no-cache-dir pip -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com \
-    && pip3 install --no-cache-dir -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r requirements.txt
+    && pip3 install --upgrade --no-cache-dir pip -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+    && pip3 install --no-cache-dir -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple -r requirements.txt
 
 # Install render-template and mysql-client
 SHELL ["/bin/bash", "-c"]
