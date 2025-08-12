@@ -47,7 +47,7 @@ services:
       - MYSQL_PASSWORD=pass4Spug
       - MYSQL_DB=spug
       - REDIS_HOST=redis
-      - REDIS_PASSWORD=pass4Spug
+      # - REDIS_PASSWORD=pass4Spug
       - DEFAULT_ADMIN_USER=admin
       - DEFAULT_ADMIN_PASSWORD=spug.dev
     networks:

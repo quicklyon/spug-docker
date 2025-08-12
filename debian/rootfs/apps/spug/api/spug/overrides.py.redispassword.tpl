@@ -18,7 +18,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_CACHES_DB}}",
+        "LOCATION": "redis://:{{REDIS_PASSWORD}}@{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_CACHES_DB}}",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -29,7 +29,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": ["redis://{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_CHANNEL_DB}}"],
+            "hosts": ["redis://:{{REDIS_PASSWORD}}@{{REDIS_HOST}}:{{REDIS_PORT}}/{{REDIS_CHANNEL_DB}}"],
         },
     },
 }

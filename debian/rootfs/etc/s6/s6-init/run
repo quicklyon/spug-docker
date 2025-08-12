@@ -33,7 +33,11 @@ done
 SPUG_INI="/apps/spug/api/spug/overrides.py"
 
 info "Render overrides.py with environment variables."
-/usr/bin/render-template ${SPUG_INI}.tpl > ${SPUG_INI}
+if [ -z "$REDIS_PASSWORD" ]; then
+  /usr/bin/render-template ${SPUG_INI}.tpl > ${SPUG_INI}
+else
+  /usr/bin/render-template ${SPUG_INI}.redispassword.tpl > ${SPUG_INI}
+fi
 
 #======================#
 # Check MySQL service  #
